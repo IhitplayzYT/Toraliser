@@ -42,20 +42,20 @@ int connect(int app_socket, const struct sockaddr *app_address, socklen_t app_ad
         return -3;
     }
 
-    char buff_reciev[64];
+    char buff_recv[64];
     Sent *send_packet = Request((const struct sockaddr_in *)app_address);
     write(soc, send_packet, sizeof(Sent));
-    memset(buff_reciev, 0, 64);
-    read(soc, buff_reciev, sizeof(buff_reciev));
-    Recieved *reciev = (Recieved *)buff_reciev;
-    if (reciev->cd != 90)
+    memset(buff_recv, 0, 64);
+    read(soc, buff_recv, sizeof(buff_recv));
+    Received *recv = (Received *)buff_recv;
+    if (recv->cd != 90)
     {
         fprintf(stderr, "Handshake failed!\n");
         free(send_packet);
         close(soc);
         return -4;
     }
-    printf("Successfull handshake\n");
+    printf("Successful handshake\n");
     free(send_packet);
     dup2(soc, app_socket);
 

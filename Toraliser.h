@@ -17,30 +17,30 @@
 #define default_port 80
 #define Username "anonyms"
 
-typedef unsigned char i8;
-typedef unsigned short int i16;
-typedef unsigned int i32;
-typedef unsigned long int i64;
+typedef unsigned char u8;
+typedef unsigned short int u16;
+typedef unsigned int u32;
+typedef unsigned long int u64;
 
 struct sent_packet
 {
-    i8 vn;
-    i8 cd;
-    i16 dst_port;
-    i32 dst_ip;
+    u8 vn;
+    u8 cd;
+    u16 dst_port;
+    u32 dst_ip;
     char username[8];
 };
 
-struct recieved_packet
+struct received_packet
 {
-    i8 vn;
-    i8 cd;
-    i16 dst_port;
-    i32 dst_ip;
+    u8 vn;
+    u8 cd;
+    u16 dst_port;
+    u32 dst_ip;
 };
 
 typedef struct sent_packet Sent;
-typedef struct recieved_packet Recieved;
+typedef struct received_packet Received;
 
 Sent *Request(const struct sockaddr_in *);
 int connect(int, const struct sockaddr *, socklen_t);
